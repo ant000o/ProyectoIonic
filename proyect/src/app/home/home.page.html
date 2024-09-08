@@ -9,31 +9,40 @@
 
 <ion-content [fullscreen]="true" class="ion-padding">
 
-  <img src="https://www.duoc.cl/wp-content/uploads/2020/06/plaza-vespucio.jpg">
-
-  Lorem ipsum, dolor sit amet consectetur adipisicing elit. 
-  Ab quam minima, exercitationem, reprehenderit voluptates pariatur repellendus eos nam doloremque odio nesciunt distinctio commodi! 
-  Impedit dolor fugit amet cumque distinctio itaque.
-
-  <img src="https://i.pinimg.com/736x/88/28/dc/8828dcd3f4fdd9b75d003d1e878bf9f7.jpg">
-
-  Lorem ipsum, dolor sit amet consectetur adipisicing elit. 
-  Ab quam minima, exercitationem, reprehenderit voluptates pariatur repellendus eos nam doloremque odio nesciunt distinctio commodi! 
-  Impedit dolor fugit amet cumque distinctio itaque.
+  <img src="https://proyecto-final-6656c.firebaseapp.com/assets/img/logo.png" alt="">
 
   
-  <img class="monkey" src="https://i.ytimg.com/vi/nAFuyIXil9U/maxresdefault.jpg" alt="">
+
+  <!-- Breve introducción -->
+  <h2 style="text-align: center; margin-top: 20px;">Bienvenido a RegistrAPP</h2>
+  <p style="text-align: center;">Esta aplicación te permitirá registrar tu asistencia escaneando el código QR que se mostrará en clase.</p>
 
 
-  <br><br>
-  <ion-button color="primary" (click)="ejecutar()">Gira al mono</ion-button>
+  <!-- Animación: Gira el ícono de escaneo -->
+  <div style="text-align: center; margin-top: 30px;">
+    <img class="scanner-icon" src="https://img.freepik.com/vector-gratis/persona-escaneando-codigo-qr-telefono-inteligente_23-2148633637.jpg" 
+    alt="Icono QR" style="width: 120px;">
 
-  Lorem ipsum, dolor sit amet consectetur adipisicing elit. 
-  Ab quam minima, exercitationem, reprehenderit voluptates pariatur repellendus eos nam doloremque odio nesciunt distinctio commodi! 
-  Impedit dolor fugit amet cumque distinctio itaque.
+  </div>
 
-  
+  <!-- Sección de información sobre la aplicación -->
+  <h3 style="text-align: center; margin-top: 20px;">¿Cómo funciona?</h3>
+  <p style="text-align: center;">
+    Cada profesor generará un código QR para registrar la asitencia al inicio o final de su clase. Solo necesitas abrir la app, 
+    ir a la sección de "Escáner" y apuntar con tu cámara al código. La asistencia se registrará automáticamente con el día y la hora.
+  </p>
+
+  <!-- Botón para acceder al escáner o información sobre cómo usarlo -->
+  <ion-button expand="block" color="primary" routerLink="/escaneo" style="margin-top: 20px;">
+    Escanear Código QR
+  </ion-button>
+
+  <!-- Sección "¿Quiénes somos?" -->
   <h3 style="text-align: center;">¿Quiénes somos?</h3>
+  <p style="text-align: center;">Somos estudiantes de Ingenieria en Informática en Duoc UC Plaza Vespucio.</p>
+  <!-- Imagen de la institución -->
+  <img src="https://www.duoc.cl/wp-content/uploads/2020/06/plaza-vespucio.jpg" alt="Duoc UC Plaza Vespucio" style="width: 100%;">
+  <p style="text-align: center;">Equipo conformado que trabajó para llevar a cabo esta aplicación:</p> 
   <div class="circle-container">
     
     <div class="horizontal">
