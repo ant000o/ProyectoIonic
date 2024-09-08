@@ -15,26 +15,10 @@
 }
 
 .logoduoc {
-    animation: fadeInOut 3s infinite, moveUpDown 3s infinite;
+    width: 100%;
+    padding: 0px 20px;
 }
 
-@keyframes fadeInOut {
-0%, 100% {
-    opacity: 1;
-}
-50% {
-    opacity: 0.5;
-}
-}
-
-@keyframes moveUpDown {
-0%, 100% {
-    transform: translateY(0);
-}
-50% {
-    transform: translateY(10px);
-}
-}
 
 
 

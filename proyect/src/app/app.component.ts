@@ -14,7 +14,7 @@ export class AppComponent implements OnInit {
     { title: 'Escaner', url: '/escaneo', icon: 'qr-code' },
     { title: 'Perfil', url: '/perfil', icon: 'person' },
     { title: 'Ayuda', url: '/folder/favorites', icon: 'help' },
-    { title: 'Manual de Usuario', url: '/folder/trash', icon: 'book' },
+    { title: 'Manual de Usuario', url: '/manual', icon: 'book' },
     { title: 'Cerrar Sesión', url: '/folder/spam', icon: 'log-out' },
   ];
 
