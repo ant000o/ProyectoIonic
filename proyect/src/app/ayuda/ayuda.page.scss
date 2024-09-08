@@ -1,0 +1,86 @@
+.contact-container {
+    display: flex;
+    align-items: center; /* Centra verticalmente el contenido */
+    padding: 16px;       /* Espaciado alrededor del contenedor */
+  }
+  
+  .whatsapp-icon {
+    font-size: 24px;     /* Tamaño del ícono */
+    margin-right: 8px;   /* Espaciado entre el ícono y el texto */
+  }
+  
+  .contact-text {
+    font-size: 16px;     /* Tamaño del texto */
+    flex: 1;             /* Asegura que el texto ocupe el espacio restante */
+  }
+  
+  .additional-info {
+    padding: 16px;       /* Espaciado alrededor de la información adicional */
+    text-align: center;  /* Centra el texto adicional */
+  }
+  
+  .phone-number {
+    font-size: 18px;     /* Tamaño del número de teléfono */
+    margin-bottom: 4px;  /* Espacio debajo del número de teléfono */
+  }
+  
+  .working-hours {
+    font-size: 14px;     /* Tamaño del texto de horario */
+    color: #666;         /* Color del texto de horario (opcional) */
+  }
+  
+
+  /**/
+  
+  .contact-info {
+  display: flex;
+  align-items: center;
+  padding: 16px;
+}
+
+.call-icon {
+  font-size: 32px;
+  margin-right: 16px;
+}
+
+.contact-details {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  flex: 1;
+}
+
+.contact-text {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 8px;
+  text-align: center;
+}
+
+.phone-number {
+  font-size: 16px;
+  margin-bottom: 8px;
+  text-align: center;
+}
+
+.working-hours {
+  font-size: 14px;
+  color: #666;
+  text-align: center;
+}
+
+
+/* archivo .scss o .css */
+
+.problem-container {
+  padding: 16px;
+  text-align: center; /* Centra el texto horizontalmente */
+}
+
+.problem-container p {
+  font-size: 16px; /* Tamaño de la fuente */
+  color: #333; /* Color del texto */
+  margin: 8px 0; /* Espaciado entre los párrafos */
+}
+
+

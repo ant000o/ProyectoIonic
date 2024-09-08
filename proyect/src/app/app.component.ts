@@ -12,7 +12,7 @@ export class AppComponent implements OnInit {
     { title: 'Inicio', url: '/home', icon: 'home' },
     { title: 'Escaner', url: '/escaneo', icon: 'qr-code' },
     { title: 'Perfil', url: '/perfil', icon: 'person' },
-    { title: 'Ayuda', url: '/folder/favorites', icon: 'help' },
+    { title: 'Ayuda', url: '/ayuda', icon: 'help' },
     { title: 'Manual de Usuario', url: '/folder/trash', icon: 'book' },
     { title: 'Cerrar Sesión', url: '/folder/spam', icon: 'log-out' },
   ];
