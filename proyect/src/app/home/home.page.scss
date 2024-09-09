@@ -1,3 +1,10 @@
+.imagen img:first-child{
+    display: block;
+}
+.imagen img:last-child{
+    display: none;
+}
+
 .logo{
     display: flex;
     justify-content: center;
@@ -6,4 +13,14 @@
 
 .scanner-icon{
     padding: 20px 60px 40px;
+}
+
+
+@media (prefers-color-scheme: dark){
+    .imagen img:first-child{
+        display: none;
+    }
+    .imagen img:last-child{
+        display: block;
+    }
 }

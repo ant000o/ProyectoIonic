@@ -33,3 +33,11 @@ ion-title{
     width: 100%;
     z-index: 0;
 }
+
+ion-list{
+    background: none;
+}
+
+ion-item{
+    --background: none;
+}
