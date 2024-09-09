@@ -9,25 +9,24 @@
 
 <ion-content [fullscreen]="true" class="ion-padding">
 
-  <img src="https://proyecto-final-6656c.firebaseapp.com/assets/img/logo.png" alt="">
+  <img src="../../assets/imagenes/logoAsistencia-removebg-preview.png" alt="" class="logo">
 
   
 
   <!-- Breve introducción -->
-  <h2 style="text-align: center; margin-top: 20px;">Bienvenido a RegistrAPP</h2>
-  <p style="text-align: center;">Esta aplicación te permitirá registrar tu asistencia escaneando el código QR que se mostrará en clase.</p>
+  <h2 style="text-align: center;">Bienvenido {{ username }}</h2>
+  <p style="text-align: justify;">Esta aplicación te permitirá registrar tu asistencia escaneando el código QR que se mostrará en clase.</p>
 
 
   <!-- Animación: Gira el ícono de escaneo -->
-  <div style="text-align: center; margin-top: 30px;">
+  <div>
     <img class="scanner-icon" src="https://img.freepik.com/vector-gratis/persona-escaneando-codigo-qr-telefono-inteligente_23-2148633637.jpg" 
-    alt="Icono QR" style="width: 120px;">
-
+    alt="Icono QR">
   </div>
 
   <!-- Sección de información sobre la aplicación -->
-  <h3 style="text-align: center; margin-top: 20px;">¿Cómo funciona?</h3>
-  <p style="text-align: center;">
+  <h3 style="text-align: center;">¿Cómo funciona?</h3>
+  <p style="text-align: justify;">
     Cada profesor generará un código QR para registrar la asitencia al inicio o final de su clase. Solo necesitas abrir la app, 
     ir a la sección de "Escáner" y apuntar con tu cámara al código. La asistencia se registrará automáticamente con el día y la hora.
   </p>
@@ -36,30 +35,6 @@
   <ion-button expand="block" color="primary" routerLink="/escaneo" style="margin-top: 20px;">
     Escanear Código QR
   </ion-button>
-
-  <!-- Sección "¿Quiénes somos?" -->
-  <h3 style="text-align: center;">¿Quiénes somos?</h3>
-  <p style="text-align: center;">Somos estudiantes de Ingenieria en Informática en Duoc UC Plaza Vespucio.</p>
-  <!-- Imagen de la institución -->
-  <img src="https://www.duoc.cl/wp-content/uploads/2020/06/plaza-vespucio.jpg" alt="Duoc UC Plaza Vespucio" style="width: 100%;">
-  <p style="text-align: center;">Equipo conformado que trabajó para llevar a cabo esta aplicación:</p> 
-  <div class="circle-container">
-    
-    <div class="horizontal">
-      <img [class.rotating]="isRotating[0]" class="circle" src="https://media.tenor.com/KHwiQIuTWn8AAAAM/monkey-sad.gif" alt="">
-      <h5 (click)="toggleRotation(0)">Antonio Campos</h5>
-    </div>
-
-    <div class="horizontal">
-      <img [class.rotating]="isRotating[1]" class="circle" src="https://media.tenor.com/awZg-WgEyTYAAAAM/goofy-funny.gif" alt="">
-      <h5 (click)="toggleRotation(1)">Alonso <br> Cruz</h5>
-    </div>
-
-    <div class="horizontal">
-      <img [class.rotating]="isRotating[2]" class="circle" src="https://media.tenor.com/55MSmCQbMO0AAAAe/monkey.png" alt="">
-      <h5 (click)="toggleRotation(2)">Benjamín Opazo</h5>
-    </div>
-  </div>
   
 
 

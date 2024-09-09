@@ -13,7 +13,21 @@ export class PerfilPage implements OnInit {
   constructor(private authService: AuthService) {}
 
   ngOnInit() {
-    this.mail = sessionStorage.getItem('loggedInUser') || '';
-    this.username = sessionStorage.getItem('username') || '';
+    this.loadUsername();
+    this.loadEmail();
+  }
+
+  loadUsername() {
+    const email = sessionStorage.getItem('loggedInUser'); // Obtener el email del sessionStorage
+    if (email) {
+      this.username = email.split('@')[0].toUpperCase(); // Extraer la parte antes del @
+    }
+  }
+
+  loadEmail(){
+    const email = sessionStorage.getItem('loggedInUser'); // Obtener el email del sessionStorage
+    if (email) {
+      this.mail = email
+    }
   }
 }

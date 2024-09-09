@@ -42,7 +42,11 @@ const routes: Routes = [
   {
     path: 'perfil',
     loadChildren: () => import('./perfil/perfil.module').then( m => m.PerfilPageModule)
+  },  {
+    path: 'acerca',
+    loadChildren: () => import('./acerca/acerca.module').then( m => m.AcercaPageModule)
   },
+
 ];
 
 @NgModule({
