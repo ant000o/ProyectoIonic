@@ -34,13 +34,15 @@ const routes: Routes = [
   {
     path: 'ayuda',
     loadChildren: () => import('./ayuda/ayuda.module').then( m => m.AyudaPageModule)
-  },  {
+  },
+  {
     path: 'manual',
     loadChildren: () => import('./manual/manual.module').then( m => m.ManualPageModule)
   },
-
-
-
+  {
+    path: 'perfil',
+    loadChildren: () => import('./perfil/perfil.module').then( m => m.PerfilPageModule)
+  },
 ];
 
 @NgModule({
