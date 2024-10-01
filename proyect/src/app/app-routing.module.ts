@@ -46,6 +46,10 @@ const routes: Routes = [
     path: 'acerca',
     loadChildren: () => import('./acerca/acerca.module').then( m => m.AcercaPageModule)
   },
+  {
+    path: 'gestion-usuario',
+    loadChildren: () => import('./gestion-usuario/gestion-usuario.module').then( m => m.GestionUsuarioPageModule)
+  },
 
 ];
 

@@ -16,15 +16,18 @@ export class AppComponent implements OnInit {
     { title: 'Acerca de', url: '/acerca', icon: 'people' },
     { title: 'Manual de Usuario', url: '/manual', icon: 'book' },
     { title: 'Ayuda', url: '/ayuda', icon: 'help' },
+    { title: 'Administración', url: '/gestion-usuario', icon: 'construct' },
     { title: 'Cerrar Sesión', icon: 'log-out' },
   ];
 
   public username: string = '';
+  
+
 
   constructor(
     private authService: AuthService, 
     private router: Router, 
-    private menuController: MenuController  // Inyectamos MenuController
+    private menuController: MenuController,  // Inyectamos MenuController
   ) {
     this.initializeApp();  // Llamamos a la función para inicializar la app
   }
@@ -46,6 +49,7 @@ export class AppComponent implements OnInit {
       this.router.navigate(['/login']);
     });
   }
+
   initializeApp() {
     this.router.events.subscribe(event => {
       if (event instanceof NavigationEnd) {

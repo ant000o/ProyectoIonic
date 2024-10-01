@@ -1,0 +1,40 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Administración de Usuarios</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+
+    
+    <ion-item>
+      <ion-label position="floating">Nombre</ion-label>
+      <ion-input [(ngModel)]="name"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Edad</ion-label>
+      <ion-input type="number" [(ngModel)]="age"></ion-input>
+    </ion-item>
+
+    <ion-list>
+      <ion-item>
+        <ion-select aria-label="rol" interface="popover" [(ngModel)]="rol" placeholder="Seleccione Rol">
+          <ion-select-option value="Administrador">Administrador</ion-select-option>
+          <ion-select-option value="Estudiante">Estudiante</ion-select-option>
+        </ion-select>
+      </ion-item>
+    </ion-list>
+
+    <ion-button expand="full" type="submit" (click)="addUser()" [disabled]="!isFormValid()">Agregar Usuario</ion-button>
+
+
+  <ion-list>
+    <ion-item *ngFor="let user of users$ | async">
+      {{ user.name }} - {{ user.age }} años - {{ user.rol }}
+    </ion-item>
+  </ion-list>
+</ion-content>
