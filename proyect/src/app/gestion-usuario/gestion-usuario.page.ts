@@ -35,14 +35,14 @@ export class GestionUsuarioPage implements OnInit {
     const nameRegex = /^[a-zA-ZÀ-ÿ\s]+$/;  // Permite letras con acentos y espacios
   
     if (!nameRegex.test(this.name.trim())) {
-      console.log('El nombre solo debe contener letras.');
+      alert('El nombre solo debe contener letras.');
       return;
     }
   
     // Verificamos nuevamente si el formulario es válido
     if (this.isFormValid()) {
       this.userService.addUser(this.name, this.age!, this.rol).then(() => {
-        console.log('Usuario agregado exitosamente!');
+        alert('Usuario agregado exitosamente!');
         this.name = ''; // Limpiamos el input de nombre
         this.age = null; // Limpiamos el input de edad
         this.rol = ''; // Limpiamos el input de rol

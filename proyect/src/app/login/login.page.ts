@@ -14,23 +14,36 @@ export class LoginPage implements OnInit, AfterViewInit {
   showPassword = false;
 
   constructor(private authService: AuthService, private router: Router, private animationCtrl: AnimationController) {}
+  ngOnInit() {}
 
   togglePasswordVisibility() {
     this.showPassword = !this.showPassword;
   }
 
+  
+
   async login() {
     try {
       this.email = this.email.toLowerCase(); // Convertir el email a minúsculas
       await this.authService.login(this.email, this.password);
-      this.router.navigateByUrl('/home'); 
+      alert("¡Logueado exitosamente!");
+      this.router.navigate(['/home']);
     } catch (error) {
-      console.error('Error de ingreso', error);
       alert('Ingreso fallido. Por favor, comprueba tus credenciales.');
     }
   }
 
-  ngOnInit() {}
+
+  async register() {
+    try {
+      await this.authService.register(this.email, this.password);
+      alert("¡Registrado exitosamente!");
+    } catch (error) {
+      alert("Problemas al registrar el usuario, debe ingresar un correo y una contraseña");
+    }
+  }
+
+
 
   ngAfterViewInit() {
     const logo = document.querySelector('.logoduoc') as HTMLElement;
@@ -49,4 +62,6 @@ export class LoginPage implements OnInit, AfterViewInit {
     
     animation.play();
   }
+
+
 }

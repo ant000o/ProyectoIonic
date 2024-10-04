@@ -30,37 +30,19 @@
 
       <form (ngSubmit)="login()">
         <ion-item>
-          <ion-input
-            type="email"
-            label="Email"
-            labelPlacement="floating"
-            placeholder="Email"
-            [(ngModel)]="email"
-            name="email"
-            required
-            [clearInput]="true"
-          ></ion-input>
+          <ion-label position="floating">email</ion-label>
+          <ion-input type="email" [(ngModel)]="email" name="email"></ion-input>
         </ion-item>
-
+      
         <ion-item>
-          <ion-input
-            [type]="showPassword ? 'text' : 'password'"
-            label="Contraseña"
-            labelPlacement="floating"
-            placeholder="Contraseña"
-            [(ngModel)]="password"
-            name="password"
-            required
-          ></ion-input>
-          <ion-icon
-            slot="end"
-            [name]="showPassword ? 'eye' : 'eye-off'"
-            (click)="togglePasswordVisibility()"
-          ></ion-icon>
+          <ion-label position="floating">password</ion-label>
+          <ion-input type="password" [(ngModel)]="password" name="password"></ion-input>
         </ion-item>
-
-        <ion-button expand="block" fill="clear" type="submit">Ingresar</ion-button>
+      
+        <ion-button expand="full" color="warning" type="submit">Login</ion-button>
       </form>
+
+      <ion-button color="danger" expand="full" (click)="register()">registrar</ion-button>
 
       <div class="reset">
         <a expand="block" routerLink="/reset-password">¿Olvidaste tu contraseña?</a>

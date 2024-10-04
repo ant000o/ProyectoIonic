@@ -21,7 +21,7 @@ export class AppComponent implements OnInit {
   ];
 
   public username: string = '';
-  
+  userEmail: string | null = null;
 
 
   constructor(
@@ -32,15 +32,19 @@ export class AppComponent implements OnInit {
     this.initializeApp();  // Llamamos a la función para inicializar la app
   }
 
+
+
   ngOnInit() {
-    this.loadUsername();
+    this.getUserEmail();
   }
 
-  loadUsername() {
-    const email = sessionStorage.getItem('loggedInUser'); // Obtener el email del sessionStorage
-    if (email) {
-      this.username = email.split('@')[0].toUpperCase(); // Extraer la parte antes del @
-    }
+
+  getUserEmail() {
+    this.authService.getUser().subscribe(user => {
+      if (user && user.email) {
+        this.userEmail = user.email.split('@')[0].toUpperCase();
+      }
+    });
   }
 
   logout() {
