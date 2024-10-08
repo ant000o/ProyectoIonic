@@ -1,55 +1,57 @@
-import { Component, OnInit } from '@angular/core';
-import { UserService } from '../services/user.service'; // Importamos el servicio de usuarios
-import { Observable } from 'rxjs'; // Para el manejo de observables de Firebase
+import { Component, OnInit, AfterViewInit } from '@angular/core';
+import { AnimationController } from '@ionic/angular';
+import { AuthService } from '../services/auth.service';
+import { Router } from '@angular/router';
+import { AlertController } from '@ionic/angular'; // Importamos AlertController
 
 @Component({
   selector: 'app-gestion-usuario',
   templateUrl: './gestion-usuario.page.html',
   styleUrls: ['./gestion-usuario.page.scss'],
 })
+
+
 export class GestionUsuarioPage implements OnInit {
 
   // Variables para manejo de usuarios
   name: string = '';
+  lastname: string = '';
   age: number | null = null;
   rol: string = '';
-  users$: Observable<any[]>;  // Observable para los usuarios desde Firebase
+  // users$: Observable<any[]>;  
 
-  constructor( 
-    private userService: UserService         
-  ) { 
-    this.users$ = this.userService.getUsers(); 
-  }
 
+
+  email: string = ''; 
+  password: string = ''; 
+  showPassword = false;
+
+  constructor(private authService: AuthService, private router: Router, 
+    private animationCtrl: AnimationController, private alertController: AlertController) {}
   ngOnInit() {
   }
 
   
-  isFormValid(): boolean {
-    return this.name.trim() !== '' && this.age !== null && this.rol.trim() !== '';
-  }
-
-  
-  addUser() {
-    // Verificamos que el nombre solo contenga letras
-    const nameRegex = /^[a-zA-ZÀ-ÿ\s]+$/;  // Permite letras con acentos y espacios
-  
-    if (!nameRegex.test(this.name.trim())) {
-      alert('El nombre solo debe contener letras.');
-      return;
+  async register() {
+    try {
+      await this.authService.register(this.email, this.password);
+      this.showAlert('¡Registrado exitosamente!','');
+    } catch (error) {
+      this.showAlert('Error', 'Verifique el correo y contraseña.');
     }
-  
-    // Verificamos nuevamente si el formulario es válido
-    if (this.isFormValid()) {
-      this.userService.addUser(this.name, this.age!, this.rol).then(() => {
-        alert('Usuario agregado exitosamente!');
-        this.name = ''; // Limpiamos el input de nombre
-        this.age = null; // Limpiamos el input de edad
-        this.rol = ''; // Limpiamos el input de rol
-      });
-    } 
   }
 
+
+  // Método para mostrar la alerta con ion-alert
+  async showAlert(header: string, message: string) {
+    const alert = await this.alertController.create({
+      header: header,
+      message: message,
+      buttons: ['OK']
+    });
+
+    await alert.present();
+  }
   
 
 }
