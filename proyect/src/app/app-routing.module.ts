@@ -10,20 +10,23 @@ const routes: Routes = [
   },
   {
     path: '',
-    redirectTo: 'login',
+    redirectTo: '/login',
     pathMatch: 'full'
   },
   {
     path: 'casobien',
-    loadChildren: () => import('./casobien/casobien.module').then( m => m.CasobienPageModule)
+    loadChildren: () => import('./casobien/casobien.module').then( m => m.CasobienPageModule),
+    canActivate: [AuthGuard] 
   },
   {
     path: 'casomal',
-    loadChildren: () => import('./casomal/casomal.module').then( m => m.CasomalPageModule)
+    loadChildren: () => import('./casomal/casomal.module').then( m => m.CasomalPageModule),
+    canActivate: [AuthGuard] 
   },
   {
     path: 'escaneo',
-    loadChildren: () => import('./escaneo/escaneo.module').then( m => m.EscaneoPageModule)
+    loadChildren: () => import('./escaneo/escaneo.module').then( m => m.EscaneoPageModule),
+    canActivate: [AuthGuard] 
   },
   { 
     path: 'login', 
@@ -35,23 +38,28 @@ const routes: Routes = [
   },
   {
     path: 'ayuda',
-    loadChildren: () => import('./ayuda/ayuda.module').then( m => m.AyudaPageModule)
+    loadChildren: () => import('./ayuda/ayuda.module').then( m => m.AyudaPageModule),
+    canActivate: [AuthGuard] 
   },
   {
     path: 'manual',
-    loadChildren: () => import('./manual/manual.module').then( m => m.ManualPageModule)
+    loadChildren: () => import('./manual/manual.module').then( m => m.ManualPageModule),
+    canActivate: [AuthGuard] 
   },
   {
     path: 'perfil',
-    loadChildren: () => import('./perfil/perfil.module').then( m => m.PerfilPageModule)
+    loadChildren: () => import('./perfil/perfil.module').then( m => m.PerfilPageModule),
+    canActivate: [AuthGuard] 
   },
   {
     path: 'acerca',
-    loadChildren: () => import('./acerca/acerca.module').then( m => m.AcercaPageModule)
+    loadChildren: () => import('./acerca/acerca.module').then( m => m.AcercaPageModule),
+    canActivate: [AuthGuard] 
   },
   {
     path: 'gestion-usuario',
-    loadChildren: () => import('./gestion-usuario/gestion-usuario.module').then( m => m.GestionUsuarioPageModule)
+    loadChildren: () => import('./gestion-usuario/gestion-usuario.module').then( m => m.GestionUsuarioPageModule),
+    canActivate: [AuthGuard] 
   },
 
 ];

@@ -62,6 +62,10 @@ export class AppComponent implements OnInit {
     });
   }
 
+  isLoginPage(): boolean {
+    return this.router.url === '/login';
+  }
+
   checkMenuVisibility(url: string) {
     // Oculta el menú en las rutas
     if (url === '/login' || url === '/reset-password' || url === '/casobien' || url === '/casomal') {

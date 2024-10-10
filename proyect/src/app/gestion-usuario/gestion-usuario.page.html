@@ -11,10 +11,10 @@
 
     
   <div class="title" style="text-align: center;">
-    <h1>Acceder</h1>
+    <h1>Registrar Usuario</h1>
   </div>
 
-  <form (ngSubmit)="register()">
+  <form >
     <ion-item>
       <ion-label position="floating">Correo</ion-label>
       <ion-input type="email" [(ngModel)]="email" name="email"></ion-input>
@@ -42,7 +42,7 @@
 
     <ion-list>
       <ion-item>
-        <ion-select aria-label="rol" interface="popover" [(ngModel)]="rol" placeholder="Seleccione Rol">
+        <ion-select aria-label="rol" interface="popover" [(ngModel)]="rol"  name="rol" placeholder="Seleccione Rol">
           <ion-select-option value="Administrador">Administrador</ion-select-option>
           <ion-select-option value="Estudiante">Estudiante</ion-select-option>
           <ion-select-option value="Profesor">Profesor</ion-select-option>

@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Animation, AnimationController } from '@ionic/angular';
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-home',
@@ -8,18 +9,25 @@ import { Animation, AnimationController } from '@ionic/angular';
 })
 export class HomePage {
 
-  username!: string; 
-  mail!: string;  
+  // username!: string; 
+  // mail!: string;  
+  userEmail: string | null = null;
   
 
   private animation!: Animation;
-  constructor(private aCtrl: AnimationController) { }
+  constructor(private aCtrl: AnimationController, private authService: AuthService) { }
   
   ngOnInit() {
-    this.loadUsername();
+    this.getUserEmail();
   }
 
-
+  getUserEmail() {
+    this.authService.getUser().subscribe(user => {
+      if (user && user.email) {
+        this.userEmail = user.email.split('@')[0].toUpperCase();
+      }
+    });
+  }
 
   
   
@@ -45,11 +53,6 @@ export class HomePage {
     }, 2500); // Cambia el tiempo según la frecuencia deseada
   }
   
-  loadUsername() {
-    const email = sessionStorage.getItem('loggedInUser'); // Obtener el email del sessionStorage
-    if (email) {
-      this.username = email.split('@')[0].toUpperCase(); // Extraer la parte antes del @
-    }
-  }
+  
 
 }
