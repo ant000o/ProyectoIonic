@@ -1,0 +1,65 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Administración de Usuarios</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+
+    
+  <div class="title" style="text-align: center;">
+    <h1>Registrar Usuario</h1>
+  </div>
+
+  <form >
+    <ion-item>
+      <ion-label position="floating">Correo</ion-label>
+      <ion-input type="email" [(ngModel)]="email" name="email"></ion-input>
+    </ion-item>
+  
+    <ion-item>
+      <ion-label position="floating">Contraseña</ion-label>
+      <ion-input type="password" [(ngModel)]="password" name="password"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Nombre</ion-label>
+      <ion-input type="name" [(ngModel)]="name" name="name"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Apellidos</ion-label>
+      <ion-input type="name" [(ngModel)]="lastname" name="lastname"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Edad</ion-label>
+      <ion-input type="age" [(ngModel)]="age" name="age"></ion-input>
+    </ion-item>
+
+    <ion-list>
+      <ion-item>
+        <ion-select aria-label="rol" interface="popover" [(ngModel)]="rol"  name="rol" placeholder="Seleccione Rol">
+          <ion-select-option value="Administrador">Administrador</ion-select-option>
+          <ion-select-option value="Estudiante">Estudiante</ion-select-option>
+          <ion-select-option value="Profesor">Profesor</ion-select-option>
+        </ion-select>
+      </ion-item>
+    </ion-list>
+  
+    
+    <ion-button color="danger" expand="full" (click)="register()">registrar</ion-button>
+  </form>
+
+
+
+
+  <!-- <ion-list>
+    <ion-item *ngFor="let user of users$ | async">
+      {{ user.name }} - {{ user.age }} años - {{ user.rol }}
+    </ion-item>
+  </ion-list> -->
+</ion-content>

@@ -1,0 +1,76 @@
+.custom-text {
+  font-size: clamp(1.5rem, 5vw, 3rem); /* Ajuste dinámico de tamaño de fuente */
+  font-weight: bold;
+  text-align: center;
+  color: #3880ff;
+}
+
+.imagen {
+  padding: 20px;
+  border: 1px solid #ccc;
+  background: white;
+  border-radius: 4px;
+  max-width: 80%;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.image-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 24px 0;
+}
+
+// @media (max-width: 600px) {
+//   .custom-text {
+//     font-size: clamp(1.2rem, 6vw, 2rem);
+//     margin-bottom: 5vh;
+//   }
+
+//   .imagen {
+//     padding: 5vw;
+//     border: 1vw solid #ccc;
+//     border-radius: 4vw;
+//     max-width: 90%;
+//   }
+
+//   .image-container {
+//     height: auto;
+//   }
+// }
+
+// @media (min-width: 768px) and (max-width: 1024px) {
+//   .custom-text {
+//     font-size: clamp(2rem, 4vw, 2.5rem);
+//     margin-bottom: 4vh;
+//   }
+
+//   .imagen {
+//     padding: 3vw;
+//     border: 0.4vw solid #ccc;
+//     border-radius: 1.5vw;
+//     max-width: 85%;
+//   }
+
+//   .image-container {
+//     height: auto;
+//   }
+// }
+
+// @media (min-width: 1024px) {
+//   .custom-text {
+//     font-size: clamp(2rem, 3vw, 2.5rem);
+//     margin-bottom: 2vh;
+//   }
+
+//   .imagen {
+//     padding: 2vw;
+//     border: 0.3vw solid #ccc;
+//     border-radius: 1vw;
+//     max-width: 70%;
+//   }
+
+//   .image-container {
+//     height: auto;
+//   }
+// }
