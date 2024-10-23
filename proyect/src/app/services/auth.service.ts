@@ -7,7 +7,16 @@ import { FirebaseError } from '@angular/fire/app';
 })
 
 export class AuthService {
-  
+  // Usuarios simulados para el modo de simulación 
+  // Verificar con version modo simulacion
+  /*
+  private users = [
+    { email: 'test@example.com', password: '123456' },
+    { email: 'alo.cruz@duocuc.cl', password: '123456' },
+    { email: 'an.camposa@duocuc.cl', password: '123456' },
+    { email: 'penca', password: '123456' }
+  ];
+  */
   constructor(private afAuth: AngularFireAuth) {}
 
   async login(email: string, password: string) {
@@ -32,7 +41,7 @@ export class AuthService {
     return re.test(email);
   }
 
-  // Restablecer contraseña usando Firebase Authentication
+  // Restablecer contraseña usando Firebase Authentication (version: Firebase)
   
   async resetPassword(email: string) {
     // Validar el formato del correo antes de
@@ -55,6 +64,24 @@ export class AuthService {
       }
     }
   }
+
+  // Restablecer contraseña (version: simulación)
+  // Descomentar para usar esta versión (Comentar version anterior)
+  /*
+  resetPassword(email: string) {
+    // Validar el formato del correo antes de
+    if (!this.validateEmail(email)) {
+      return Promise.reject('Por favor, introduce una dirección de correo válida.');
+    }
+
+    const user = this.users.find(u => u.email === email);
+    if (user) {
+      return Promise.resolve('Se ha enviado un correo electrónico de restablecimiento (simulación).');
+    } else {
+      return Promise.reject('El correo electrónico no está registrado.');
+    }
+  }
+  */
 }
 
 
