@@ -22,19 +22,9 @@ export class CasobienPage implements OnInit {
       const coordinates = await Geolocation.getCurrentPosition();
       this.ubicacionTexto = `${coordinates.coords.latitude},${coordinates.coords.longitude}`;
   
-      // Obtener el contador actual desde Firestore
-      const contadorDoc = await this.firestore.collection('utilidades').doc('contador-asistencias').get().toPromise();
-      
-      let numeroRegistro = 0;
-      
-      // Verificar si el documento existe
-      if (contadorDoc && contadorDoc.exists) {
-        const data = contadorDoc.data() as { contador: number }; // Especificar el tipo de datos esperado
-        numeroRegistro = data.contador || 0; // Usar el contador del documento o 0 si no existe
-      }
-  
-      // Incrementar el contador
-      numeroRegistro++;
+      // Obtener todos los registros actuales en Firestore para calcular el número de registro
+      const registrosSnapshot = await this.firestore.collection('asistencia-bdd').get().toPromise();
+      const numeroRegistro = (registrosSnapshot?.size || 0) + 1; // Incrementar basado en la cantidad actual de documentos
   
       // Guardar la asistencia con el número de registro
       const dataAsistencia = {
@@ -45,14 +35,12 @@ export class CasobienPage implements OnInit {
       };
   
       await this.firestore.collection('asistencia-bdd').add(dataAsistencia);
-      console.log('Asistencia guardada correctamente');
-  
-      // Actualizar el contador en Firestore
-      await this.firestore.collection('utilidades').doc('contador-asistencias').set({ contador: numeroRegistro });
+      console.log('Asistencia guardada correctamente con Registro #', numeroRegistro);
   
     } catch (error) {
       console.error('Error al obtener la ubicación o guardar la asistencia', error);
       this.ubicacionTexto = 'No se pudo obtener la ubicación';
     }
-  }    
+  }
+      
 }
