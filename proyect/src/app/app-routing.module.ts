@@ -61,6 +61,10 @@ const routes: Routes = [
     loadChildren: () => import('./gestion-usuario/gestion-usuario.module').then( m => m.GestionUsuarioPageModule),
     canActivate: [AuthGuard] 
   },
+  {
+    path: 'generar-qr',
+    loadChildren: () => import('./generar-qr/generar-qr.module').then( m => m.GenerarQrPageModule)
+  },
 
 ];
 

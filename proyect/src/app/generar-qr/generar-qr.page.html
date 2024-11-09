@@ -1,0 +1,26 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>Generar Código QR</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding" [fullscreen]="true">
+  <ion-button expand="block" color="primary" (click)="generateQRCode()">
+    Generar Nuevo Código QR
+  </ion-button>
+
+  <div *ngIf="qrCodeUrl" style="text-align: center;">
+    <h2>Código QR Generado</h2>
+    <!-- Aplicamos una clase para que se vea grande -->
+    <img [src]="qrCodeUrl" alt="Código QR" class="qr-code">
+    <p>El QR visible es el unico valido!</p>
+
+    <!-- Botón para mostrar u ocultar el ID -->
+    <ion-button expand="block" color="secondary" (click)="toggleQrDataVisibility()">
+      {{ qrDataVisible ? 'Ocultar' : 'Ver' }} ID
+    </ion-button>
+
+    <!-- Mostrar el ID solo si qrDataVisible es verdadero -->
+    <p *ngIf="qrDataVisible">ID: {{ qrData }}</p>
+  </div>
+</ion-content>

@@ -35,6 +35,11 @@ export class AuthService {
     return this.afAuth.user;
   }
 
+  async getUsername(): Promise<string> {
+    const user = await this.afAuth.currentUser; 
+    return user ? user.email!.split('@')[0] : '';
+  }  
+
   // Validar el formato del correo electrónico
   validateEmail(email: string): boolean {
     const re = /\S+@\S+\.\S+/;

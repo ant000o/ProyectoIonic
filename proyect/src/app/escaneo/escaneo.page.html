@@ -3,17 +3,24 @@
     <ion-buttons slot="start">
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
-    <ion-title>Escaner</ion-title>
+    <ion-title>Escáner</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content class="ion-padding" [fullscreen]="true">
   <p class="custom-text">¡Escanea para marcar tu asistencia!</p>
-  <div class="image-container">
+  <div class="image-container" *ngIf="!isScanning">
     <img class="imagen" alt="imagen" src="https://cdn-icons-png.flaticon.com/512/96/96977.png">
   </div>
-  <!-- Botón para activar la cámara -->
-  <ion-button expand="block" color="primary" (click)="activateCamera()">
+  <ion-button *ngIf="!isScanning" expand="block" color="primary" (click)="activateCamera()">
     Activar Cámara
   </ion-button>
+
+  <!-- Overlay de la cámara con el botón de cierre -->
+  <div *ngIf="isScanning" class="scanner-overlay">
+    <div class="close-button" (click)="stopScan()">✕</div>
+    <div class="scanner-area">
+      <!-- La cámara se activará en el área de escaneo -->
+    </div>
+  </div>
 </ion-content>
