@@ -16,7 +16,8 @@
     <p>El QR visible es el unico valido!</p>
 
     <!-- Botón para mostrar u ocultar el ID -->
-    <ion-button expand="block" color="secondary" (click)="toggleQrDataVisibility()">
+    <!-- Cambia expand="block" por size="small" y agrega estilo adicional -->
+    <ion-button size="small" fill="outline" color="secondary" (click)="toggleQrDataVisibility()">
       {{ qrDataVisible ? 'Ocultar' : 'Ver' }} ID
     </ion-button>
 

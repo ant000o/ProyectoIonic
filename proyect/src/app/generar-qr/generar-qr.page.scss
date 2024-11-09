@@ -4,4 +4,11 @@
     margin: 0 auto; /* Centra el QR */
     display: block; /* Asegura que la imagen sea un bloque y no se desborde */
 }
+
+ion-button[size="small"] {
+    --padding-start: 8px;
+    --padding-end: 8px;
+    --min-height: 32px;
+    font-size: 14px;
+}
   
