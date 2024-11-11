@@ -19,11 +19,6 @@ const routes: Routes = [
     canActivate: [AuthGuard] 
   },
   {
-    path: 'casomal',
-    loadChildren: () => import('./casomal/casomal.module').then( m => m.CasomalPageModule),
-    canActivate: [AuthGuard] 
-  },
-  {
     path: 'escaneo',
     loadChildren: () => import('./escaneo/escaneo.module').then( m => m.EscaneoPageModule),
     canActivate: [AuthGuard] 
