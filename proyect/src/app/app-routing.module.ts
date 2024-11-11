@@ -1,6 +1,9 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from './guards/auth.guard';
+import { AdminEmailGuard } from './guards/admin-email.guard';
+import { ProfesorEmailGuard } from './guards/profesor-email.guard';
+
 
 const routes: Routes = [
   { 
@@ -54,11 +57,12 @@ const routes: Routes = [
   {
     path: 'gestion-usuario',
     loadChildren: () => import('./gestion-usuario/gestion-usuario.module').then( m => m.GestionUsuarioPageModule),
-    canActivate: [AuthGuard] 
+    canActivate: [AdminEmailGuard]
   },
   {
     path: 'generar-qr',
-    loadChildren: () => import('./generar-qr/generar-qr.module').then( m => m.GenerarQrPageModule)
+    loadChildren: () => import('./generar-qr/generar-qr.module').then( m => m.GenerarQrPageModule),
+    canActivate: [ProfesorEmailGuard]
   },
 
 ];
