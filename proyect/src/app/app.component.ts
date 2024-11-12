@@ -19,14 +19,13 @@ export class AppComponent implements OnInit {
     { title: 'Cerrar Sesión', icon: 'log-out' },
   ];
 
-  // Opciones adicionales
   adminPage = { title: 'Administración', url: '/gestion-usuario', icon: 'construct' };
   qrPage = { title: 'QR Asistencia', url: '/generar-qr', icon: 'qr-code' };
 
   public username: string = '';
   userEmail: string | null = null;
-  isAdmin: boolean = false; // Verificación de usuario administrador
-  isProfessor: boolean = false; // Verificación de usuario profesor
+  isAdmin: boolean = false;
+  isProfessor: boolean = false;
 
   constructor(
     private authService: AuthService,
@@ -46,18 +45,27 @@ export class AppComponent implements OnInit {
         this.userEmail = user.email;
         this.username = user.email.split('@')[0].toUpperCase();
 
-        // Verifica si el correo contiene @duocucadmin o @profesor
+        // Limpiar las opciones del menú para evitar duplicaciones
+        this.appPages = [
+          { title: 'Inicio', url: '/home', icon: 'home' },
+          { title: 'Escaner', url: '/escaneo', icon: 'scan-circle' },
+          { title: 'Perfil', url: '/perfil', icon: 'person' },
+          { title: 'Acerca de', url: '/acerca', icon: 'people' },
+          { title: 'Manual de Usuario', url: '/manual', icon: 'book' },
+          { title: 'Ayuda', url: '/ayuda', icon: 'help' },
+          { title: 'Cerrar Sesión', icon: 'log-out' },
+        ];
+
+        // Verificar tipo de usuario y agregar opciones correspondientes
         this.isAdmin = user.email.includes('@duocucadmin');
         this.isProfessor = user.email.includes('@profesor');
 
-        // Si es administrador, agrega la opción de administración
         if (this.isAdmin) {
-          this.appPages.splice(this.appPages.length - 1, 0, this.adminPage); // Inserta antes de "Cerrar Sesión"
+          this.appPages.splice(this.appPages.length - 1, 0, this.adminPage);
         }
 
-        // Si es profesor, agrega la opción de QR Asistencia
         if (this.isProfessor) {
-          this.appPages.splice(this.appPages.length - 1, 0, this.qrPage); // Inserta antes de "Cerrar Sesión"
+          this.appPages.splice(this.appPages.length - 1, 0, this.qrPage);
         }
       }
     });
