@@ -15,12 +15,4 @@
   <ion-button *ngIf="!isScanning" expand="block" color="primary" (click)="activateCamera()">
     Activar Cámara
   </ion-button>
-
-  <!-- Overlay de la cámara con el botón de cierre -->
-  <div *ngIf="isScanning" class="scanner-overlay">
-    <div class="close-button" (click)="stopScan()">✕</div>
-    <div class="scanner-area">
-      <!-- La cámara se activará en el área de escaneo -->
-    </div>
-  </div>
 </ion-content>

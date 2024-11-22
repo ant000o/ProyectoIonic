@@ -30,41 +30,39 @@ export class EscaneoPage {
       const alert = await this.alertController.create({
         header: 'Permiso de cámara',
         message: 'Se requiere permiso de la cámara para escanear el código QR.',
-        buttons: ['OK']
+        buttons: ['OK'],
       });
       await alert.present();
       return;
     }
-
-    this.isScanning = true;
-    BarcodeScanner.hideBackground();
-
+  
     try {
+      this.isScanning = true;
+      BarcodeScanner.hideBackground(); // Esconde la interfaz de la app
+  
+      // Inicia el escaneo con la cámara en pantalla completa
       const result = await BarcodeScanner.startScan();
-      this.scanResult = result;
+  
+      // Procesa el resultado del escaneo
       if (result.hasContent) {
+        console.log('Contenido del QR:', result.content);
         this.isScanning = false;
+  
+        // Detiene el escaneo y muestra la interfaz de la app nuevamente
         BarcodeScanner.showBackground();
         BarcodeScanner.stopScan();
-
-        // Obtener el documento de Firestore
-        const docRef = await this.firestore.collection('codigo-qr').doc('codigo-activo').get().toPromise();
-
-        // Verificación de existencia de docRef y sus datos
-        const docData = docRef?.data() as CodigoQR; // Usar el operador de encadenamiento opcional
-
-        if (docData?.id && result.content === docData.id) {
-          // Redirigir si el código es válido
-          this.router.navigate(['/casobien']);
-        } else {
-          await this.showAlert('Código incorrecto. Inténtalo nuevamente.');
-        }
+  
+        // Redirigir a otra vista tras escanear
+        this.router.navigate(['/casobien']);
+      } else {
+        await this.showAlert('No se encontró contenido en el código QR.');
       }
     } catch (err) {
       console.error('Error al escanear:', err);
       this.stopScan();
     }
   }
+  
 
   stopScan() {
     this.isScanning = false;
