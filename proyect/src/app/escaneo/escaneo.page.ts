@@ -1,76 +1,104 @@
-import { Component } from '@angular/core';
-import { AlertController } from '@ionic/angular';
+import { Component, OnInit } from '@angular/core';
+import { AlertController, Platform } from '@ionic/angular';
 import { Router } from '@angular/router';
-import { BarcodeScanner } from '@capacitor-community/barcode-scanner';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
-
-// Definir la interfaz para los datos del documento
-interface CodigoQR {
-  id: string;
-}
+import { Barcode, BarcodeScanner } from '@capacitor-mlkit/barcode-scanning';
 
 @Component({
   selector: 'app-escaneo',
   templateUrl: './escaneo.page.html',
   styleUrls: ['./escaneo.page.scss'],
 })
-export class EscaneoPage {
-  isScanning: boolean = false;
-  scanResult: any;
+export class EscaneoPage implements OnInit {
+  isSupported = false;
+  barcodes: Barcode[] = [];
 
   constructor(
     private alertController: AlertController,
     private router: Router,
-    private firestore: AngularFirestore
+    private firestore: AngularFirestore,
+    private platform: Platform
   ) {}
 
-  async activateCamera() {
-    const status = await BarcodeScanner.checkPermission({ force: true });
-    if (!status.granted) {
-      const alert = await this.alertController.create({
-        header: 'Permiso de cámara',
-        message: 'Se requiere permiso de la cámara para escanear el código QR.',
-        buttons: ['OK'],
+  ngOnInit() {
+    if (this.platform.is('capacitor')) {
+      BarcodeScanner.isSupported().then((result) => {
+        this.isSupported = result.supported;
       });
-      await alert.present();
+    } else {
+      this.isSupported = false;
+    }
+  }
+
+  async scan(): Promise<void> {
+    if (!this.platform.is('capacitor')) {
+      this.showAlert('El escaneo solo está disponible en dispositivos móviles.');
       return;
     }
-  
+
+    const granted = await this.requestPermissions();
+    if (!granted) {
+      this.presentAlert();
+      return;
+    }
+
     try {
-      this.isScanning = true;
-      BarcodeScanner.hideBackground(); // Esconde la interfaz de la app
-  
-      // Inicia el escaneo con la cámara en pantalla completa
-      const result = await BarcodeScanner.startScan();
-  
-      // Procesa el resultado del escaneo
-      if (result.hasContent) {
-        console.log('Contenido del QR:', result.content);
-        this.isScanning = false;
-  
-        // Detiene el escaneo y muestra la interfaz de la app nuevamente
-        BarcodeScanner.showBackground();
-        BarcodeScanner.stopScan();
-  
-        // Redirigir a otra vista tras escanear
-        this.router.navigate(['/casobien']);
+      const { barcodes } = await BarcodeScanner.scan();
+      if (barcodes.length > 0) {
+        this.barcodes = barcodes;
+        const scannedID = barcodes[0].rawValue?.trim() || ''; // Asegura que sea string
+        console.log('Código QR escaneado:', scannedID); // Log de depuración
+        this.validateQR(scannedID);
       } else {
-        await this.showAlert('No se encontró contenido en el código QR.');
+        this.showAlert('No se escaneó ningún código QR válido.');
       }
-    } catch (err) {
-      console.error('Error al escanear:', err);
-      this.stopScan();
+    } catch (error) {
+      console.error('Error al escanear:', error);
+      this.showAlert('Error al escanear el código QR.');
     }
   }
-  
 
-  stopScan() {
-    this.isScanning = false;
-    BarcodeScanner.showBackground();
-    BarcodeScanner.stopScan();
+  async validateQR(scannedID: string) {
+    try {
+      const docRef = this.firestore.collection('codigo-qr').doc('codigo-activo');
+      const docSnapshot = await docRef.get().toPromise();
+
+      if (docSnapshot?.exists) {
+        const data = docSnapshot.data() as { id: string };
+        const expectedID = data?.id?.trim() || ''; // Asegura que sea string y sin espacios
+        console.log('ID esperado:', expectedID); // Log de depuración
+
+        if (expectedID === scannedID) {
+          console.log('Códigos coinciden. Escaneado:', scannedID);
+          this.router.navigate(['/casobien']);
+        } else {
+          console.error('Códigos no coinciden:', { esperado: expectedID, escaneado: scannedID });
+          this.showAlert(`Código QR incorrecto. Escaneado: ${scannedID}, Esperado: ${expectedID}`);
+        }
+      } else {
+        this.showAlert('No se encontró el código activo en la base de datos.');
+      }
+    } catch (error) {
+      console.error('Error al validar QR:', error);
+      this.showAlert('Error al validar el código QR.');
+    }
   }
 
-  async showAlert(message: string) {
+  async requestPermissions(): Promise<boolean> {
+    const { camera } = await BarcodeScanner.requestPermissions();
+    return camera === 'granted' || camera === 'limited';
+  }
+
+  async presentAlert(): Promise<void> {
+    const alert = await this.alertController.create({
+      header: 'Permiso denegado',
+      message: 'Por favor, concede permiso para usar la cámara.',
+      buttons: ['OK'],
+    });
+    await alert.present();
+  }
+
+  async showAlert(message: string): Promise<void> {
     const alert = await this.alertController.create({
       header: 'Resultado del escaneo',
       message: message,
