@@ -1,0 +1,43 @@
+.intro-text {
+    text-align: center;
+    font-size: 1.1em;
+    color: #666;
+    margin-bottom: 20px;
+}
+
+.spinner {
+    display: block;
+    margin: 20px auto;
+    color: #3880ff; /* Color del spinner */
+}
+
+.qr-container {
+    text-align: center;
+    animation: fadeIn 0.8s ease-in;
+}
+
+.qr-code {
+    width: 100%;
+    max-width: 1000px;
+    margin: 20px auto;
+    display: block;
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+}
+
+.qr-code.animate-qr {
+    opacity: 1;
+}
+
+ion-button[size="small"] {
+    --padding-start: 8px;
+    --padding-end: 8px;
+    --min-height: 32px;
+    font-size: 14px;
+}
+
+/* Animación de aparición */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}

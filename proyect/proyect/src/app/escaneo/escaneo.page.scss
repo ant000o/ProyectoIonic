@@ -1,0 +1,49 @@
+.custom-text {
+  font-size: clamp(1.5rem, 5vw, 3rem); /* Ajuste dinámico de tamaño de fuente */
+  font-weight: bold;
+  text-align: center;
+  color: #3880ff;
+}
+
+.imagen {
+  padding: 20px;
+  border: 1px solid #ccc;
+  background: white;
+  border-radius: 4px;
+  max-width: 80%;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.image-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 24px 0;
+}
+
+.scanner-overlay {
+  background-color: rgba(0, 0, 0, 0.7); // Más opaco
+}
+
+.scanner-area {
+  width: 90%;
+  height: 50%;
+  border: 4px solid #00ff00; // Cambia a verde para mayor contraste
+  border-radius: 10px;
+}
+
+
+.close-button {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  font-size: 24px;
+  color: white;
+  cursor: pointer;
+  z-index: 1001;
+}
+
+.scanner-active {
+  background: rgba(0, 0, 0, 0.9); // Fondo oscuro durante el escaneo
+}
+
